@@ -1,0 +1,154 @@
+function dtm_notify(text)
+{
+_satellite.notify(text,1);
+return true;  
+}  
+
+//var s = _satellite;
+var s = _satellite;
+  
+var getURL = window.location.href;
+var getPath = window.location.host+window.location.pathname;
+var trimPath = getPath.replace(/.*?:\/\/www./g, ""); 
+var getDomain = window.location.host;
+var getPathSlice = window.location.pathname;  
+var getPageTitle = document.title;
+
+
+// unescape omniture's stupid html escaping
+
+function unescapeHtml(e)
+{
+  return e?e.replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,"\"").replace(/&#x27;/g,"'").replace(/&#x2F;/g,"/"):e
+}
+
+
+// Get Referring Domain if not Ranker.com 
+
+function getReferrer()
+{
+  try
+  {
+    if(_satellite.getQueryParam)
+    {
+      var utm_referrer = _satellite.getQueryParam('utm_referrer');
+      if(typeof utm_referrer == 'string')
+      {
+        utm_referrer = unescapeHtml(utm_referrer);
+        dtm_notify('Found utm_referrer, setting referrer to utm_referrer: '+utm_referrer);     
+          return utm_referrer;
+      }
+    }
+  }
+  catch(e)
+  {
+    dtm_notify('Exception in getReferrer');
+  }
+  
+  if(typeof document.referrer == 'string')
+  {
+    var baseReferrer = document.referrer.match(/^([^?]+)/);
+    if(baseReferrer && baseReferrer.length)
+    {
+	baseReferrer = baseReferrer[1];
+	var loc = window.location.toString();
+	if(loc.indexOf(baseReferrer) != -1 && !/[^a-z]var=[0-9]+/.test(document.referrer) && /[^a-z]var=[0-9]+/.test(loc)) //the referrer is the same page that we were already on but without the AB testing parameters. Furthermore there is no utm_referrer set so this must have not had a referrer
+	{
+	    return '';
+	}
+    }
+    return document.referrer;
+  }
+  else
+    return '';
+}
+
+var getRef = getReferrer();
+
+function getRefDomain()
+{
+  var ref = getReferrer();
+	if(!ref.length)
+		return '(direct)';
+	
+	var url = document.createElement('a');
+	url.href = ref;
+	var rHost = url.hostname;
+	
+	if(rHost.indexOf('.') == -1) 
+	{
+		dtm_notify('THIS SHOULD NEVER HAPPEN rHost: '+rHost);
+		return '';
+	}
+	var base = rHost.substring(0, rHost.lastIndexOf('.')); // take off the .com,.net,.ord,.vegas,.xxx,etc..
+	if(base.length <= 3) // for cases like t.co, bit.ly
+		return rHost;
+	if (base.indexOf('.') == -1) // if no more periods then we are done
+	{
+		return base;
+	}
+	if(base.match(/\.[^.]{1,2}$/)) // remove the .co from .co.uk
+		base = base.replace(/\.[^.]{1,2}$/,'');
+	if (base.indexOf('.') == -1) // if no more periods then we are done
+	{
+		return base;
+	}
+	
+	return base.substring(base.indexOf('.')+1);
+}
+
+function getSourceReferrer()
+{
+	if(_satellite.getQueryParam)
+	{
+		var utm = _satellite.getQueryParam('utm_source');
+		if(utm && utm.length)
+			return utm;
+	}
+	
+	return getRefDomain();
+}
+
+  
+if(!getRef.length){getRef="No Referrer"};
+  
+trimPath = trimPath.replace("www.", "");
+
+dtm_notify('DTM:Helper Functions Loaded');
+  
+var dir = trimPath.split('/');
+var p1 = dir[1];
+
+if(!p1){trimPath = trimPath.substr(0, trimPath.lastIndexOf('/')) || trimPath;}
+  
+if(getRef!='No Referrer'){ //this code doesn't work properly
+  if(getRef.indexOf(getDomain)==-1){
+		 s.eVar51=getRef;
+  }
+}                          
+
+// Send Event Function  
+function sendEvent(trigger)
+{
+ DDO.eventData = {
+ "action":trigger
+}
+ _satellite.track('sendEvent');
+}  
+  
+function sendPageView(trigger)
+{
+ DDO.eventData = {
+ "action":trigger
+}
+ _satellite.track('sendPageView');
+} 
+  
+  
+function sendPageUnload()
+{
+ DDO.eventData = {
+ "action":"sendPageUnload"
+}
+ _satellite.track('sendPageUnload');
+}

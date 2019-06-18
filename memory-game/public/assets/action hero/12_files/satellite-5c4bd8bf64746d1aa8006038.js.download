@@ -1,0 +1,159 @@
+//Copyright 2019 Ranker Inc. All rights reserved.
+/**
+ * Get Ranker Encoded Local Storage Item
+ * @desc Methods for getting and decoding Ranker defined local storage objects.
+ * @author paul@ranker.com (Paul West)
+ */
+
+var getRankerEncodedStorageItem = ( function(){
+    
+    'use strict';
+    
+    _satellite.notify( 'DTM: Ranker: Encoded Local Storage Helper - Loaded.' );
+    
+    var DEFAULT_ITEM = {};
+    
+    /**
+     * Support
+     * @desc Check for browser support of the localStorage feature.
+     * @return {boolean} Supported.
+     * @private
+     */
+    var _support = function(){
+        
+        try{
+            return !!window.localStorage.getItem;
+        }
+        catch( e ){
+            return false;
+        }
+        
+    };
+    
+    /**
+     * Decode UTF8
+     * @desc Decodes a UTF8 string.
+     * @param {string} data Data to decode.
+     * @return Decoded string.
+     * @private
+     */
+    var _decodeUTF8 = function( data ){
+        
+        'use strict';
+        
+        var plain = '';
+        var string = '';
+        var i = 0;
+        var c = 0;
+        var c1 = 0;
+        var c2 = 0;
+        
+        while( string = data[ i ] ){
+            
+            c = data.charCodeAt( i );
+            
+            if( c < 128 ){
+                plain += String.fromCharCode( c );
+                i++;
+            }
+            else if( ( c > 191 ) && ( c < 224 ) ){
+                c2 = data.charCodeAt( i + 1 );
+                plain += String.fromCharCode( ( ( c & 31 ) << 6 ) | ( c2 & 63 ) );
+                i += 2;
+            }
+            else{
+                c2 = data.charCodeAt( i + 1 );
+                c3 = data.charCodeAt( i + 2 );
+                plain += String.fromCharCode( ( ( c & 15 ) << 12 ) | ( ( c2 & 63 ) << 6 ) | ( c3 & 63 ) );
+                i += 3;
+            }
+            
+        }
+        
+        return plain;
+        
+    };
+    
+    /**
+     * Decode Base64
+     * @desc Decodes a Base64 string.
+     * @param {string} data Data to decode.
+     * @return Decoded string
+     * @private
+     */
+    var _decodeBase64 = function( data ){
+        
+        'use strict';
+        
+        var base64 = '';
+        var plain = '';
+        var c1;
+        var c2;
+        var c3;
+        var e1;
+        var e2;
+        var e3;
+        var e4;
+        var i = 0;
+        var string = '';
+        var KEY = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+        
+        base64 = data.replace( /[^A-Za-z0-9\+\/\=]/g, '' );
+        
+        while( string = base64[ i ] ){
+            
+            e1 = KEY.indexOf( data.charAt( i++ ) );
+            e2 = KEY.indexOf( data.charAt( i++ ) );
+            e3 = KEY.indexOf( data.charAt( i++ ) );
+            e4 = KEY.indexOf( data.charAt( i++ ) );
+            
+            c1 = ( e1 << 2 ) | ( e2 >> 4 );
+            c2 = ( ( e2 & 15 ) << 4 ) | ( e3 >> 2 );
+            c3 = ( ( e3 & 3 ) << 6 ) | e4;
+            
+            plain = plain + String.fromCharCode( c1 );
+            
+            if( e3 != 64 ){
+                plain = plain + String.fromCharCode( c2 );
+            }
+            if( e4 != 64 ){
+                plain = plain + String.fromCharCode( c3 );
+            }
+            
+        }
+        
+        return _decodeUTF8( plain );
+        
+    };
+    
+    return function( name ){
+    
+        if( !_support() ){
+            _satellite.notify( 'getRankerEncodedStorageItem(): this browser does not support local storage.' );
+            return DEFAULT_ITEM;
+        }
+    
+        //Get and sort item
+        var item = window.localStorage.getItem( name );
+        if( item === null ){
+            _satellite.notify( 'getRankerEncodedStorageItem(): local storage item does not exist.' );
+            return DEFAULT_ITEM;
+        }
+        if( item === '' ){
+            return DEFAULT_ITEM;
+        }
+        
+        item = _decodeBase64( item );
+    
+        try{
+            item = JSON.parse( item );
+        }
+        catch( e ){
+            _satellite.notify( 'getRankerEncodedStorageItem(): error parsing JSON object.' );
+        }
+        
+        return item;
+        
+    }
+    
+} )();

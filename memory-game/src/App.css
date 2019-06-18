@@ -30,6 +30,29 @@
   color: white;
 }
 
+.main-area {
+ background: yellow;
+ display: flex;
+ justify-content: center;
+ min-height: 80vh;
+}
+
+ul {
+ list-style: none;
+ flex-wrap: wrap;
+ padding-top: .5vw;
+ padding-bottom: .5vw;
+ width: 100%;
+ background: red;
+}
+
+ul li {
+  height: 200px;
+  background: pink;
+  width: 200px;
+  margin: .5vw;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
