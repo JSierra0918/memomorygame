@@ -37,8 +37,7 @@
  min-height: 80vh;
 }
 
-ul {
- list-style: none;
+.grid-container {
  flex-wrap: wrap;
  padding-top: .5vw;
  padding-bottom: .5vw;
@@ -46,12 +45,18 @@ ul {
  background: red;
 }
 
-ul li {
+.grid-image {
   height: 200px;
   background: pink;
   width: 200px;
   margin: .5vw;
+  object-fit: cover;
 }
+
+img:hover {
+  cursor: pointer;
+}
+/* ========================================================================== */
 
 @keyframes App-logo-spin {
   from {

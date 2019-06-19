@@ -6,9 +6,30 @@ import Grid from './Grid';
 
 class GameContainer extends React.Component {
     state = {
-        score : 0,
+        score: 0,
         topScore: 0,
         clicked: false
+    }
+
+
+     addScore = () => {
+        let currentTopScore = this.state.topScore;
+
+        console.log("clicked!");
+
+        if (this.state.score >= currentTopScore) {
+            currentTopScore = this.state.score;
+        }
+
+        this.setState({
+            score:  this.state.score + 1,
+            topScore: currentTopScore
+        })
+    }
+
+    //create a random Grid element
+    renderElements = () => {
+        return <Grid image={process.env.PUBLIC_URL + "/assets/ace.jpeg"} wasClicked={this.addScore}/> 
     }
 
     render(){
@@ -17,10 +38,9 @@ class GameContainer extends React.Component {
                 <Header score={this.state.score} topScore={this.state.topScore} />
                 <Main>
                     <h3>HELLO There!</h3>
-                    <ul>
-                        <Grid image={process.env.PUBLIC_URL + "/assets/ace.jpeg"} />
+                        <Grid image={process.env.PUBLIC_URL + "/assets/ace.jpeg"} wasClicked={this.addScore}/> 
+                        {this.renderElements()} 
                         {/* <img src={process.env.PUBLIC_URL + "/assets/ace.jpeg"} alt=""/> */}
-                    </ul>
                 </Main>
             </div>
         )

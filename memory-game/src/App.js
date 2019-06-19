@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './Grid.css';
 import GameContainer from './components/GameContainer'
 
 function App() {
