@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Main from './Main';
 import Grid from './Grid';
+import ImageArray from '../Images.json';
 
 
 class GameContainer extends React.Component {
@@ -14,15 +15,15 @@ class GameContainer extends React.Component {
 
      addScore = () => {
         let currentTopScore = this.state.topScore;
+        let newScore = this.state.score;
+        newScore++;
 
-        console.log("clicked!");
-
-        if (this.state.score >= currentTopScore) {
-            currentTopScore = this.state.score;
+        if (newScore >= currentTopScore) {
+            currentTopScore = newScore;
         }
 
         this.setState({
-            score:  this.state.score + 1,
+            score:  newScore,
             topScore: currentTopScore
         })
     }
@@ -38,9 +39,10 @@ class GameContainer extends React.Component {
                 <Header score={this.state.score} topScore={this.state.topScore} />
                 <Main>
                     <h3>HELLO There!</h3>
+                    <div className = "grid-container"> 
                         <Grid image={process.env.PUBLIC_URL + "/assets/ace.jpeg"} wasClicked={this.addScore}/> 
                         {this.renderElements()} 
-                        {/* <img src={process.env.PUBLIC_URL + "/assets/ace.jpeg"} alt=""/> */}
+                    </div>
                 </Main>
             </div>
         )

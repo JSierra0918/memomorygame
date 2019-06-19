@@ -43,18 +43,29 @@
  padding-bottom: .5vw;
  width: 100%;
  background: red;
+ display: flex;
 }
 
-.grid-image {
+.img-wrapper {
   height: 200px;
   background: pink;
   width: 200px;
   margin: .5vw;
+  transition: all .2s;
+}
+
+.img-wrapper:hover {
+  transform: scale(1.1);
+}
+.grid-image {
+  height: 100%;
+  width: 100%;
   object-fit: cover;
 }
 
 img:hover {
   cursor: pointer;
+  scale: 1.2;
 }
 /* ========================================================================== */
 
