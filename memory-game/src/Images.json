@@ -1,47 +1,47 @@
  [
     {
         "id": 1,
-        "image": "/assets/wrestlers/1.jpeg"
+        "image": "/assets/wrestlers/1.jpg"
     },
     {
         "id": 2,
-        "image": "/assets/wrestlers/2.jpeg"
+        "image": "/assets/wrestlers/2.jpg"
     }, {
         "id": 3,
-        "image": "/assets/wrestlers/3.jpeg"
+        "image": "/assets/wrestlers/3.jpg"
     }, {
         "id": 4,
-        "image": "/assets/wrestlers/4.jpeg"
+        "image": "/assets/wrestlers/4.jpg"
     }, {
         "id": 5,
-        "image": "/assets/wrestlers/5.jpeg"
+        "image": "/assets/wrestlers/5.jpg"
     }, {
         "id": 6,
-        "image": "/assets/wrestlers/6.jpeg"
+        "image": "/assets/wrestlers/6.jpg"
     }, {
         "id": 7,
-        "image": "/assets/wrestlers/7.jpeg"
+        "image": "/assets/wrestlers/7.jpg"
     }, {
         "id": 8,
-        "image": "/assets/wrestlers/8.jpeg"
+        "image": "/assets/wrestlers/8.jpg"
     }, {
         "id": 9,
-        "image": "/assets/wrestlers/9.jpeg"
+        "image": "/assets/wrestlers/9.jpg"
     },
     {
         "id": 10,
-        "image": "/assets/wrestlers/10.jpeg"
+        "image": "/assets/wrestlers/10.jpg"
     },
     {
         "id": 11,
-        "image": "/assets/wrestlers/11.jpeg"
+        "image": "/assets/wrestlers/11.jpg"
     },
     {
         "id": 12,
-        "image": "/assets/wrestlers/12.jpeg"
+        "image": "/assets/wrestlers/12.jpg"
     },
     {
         "id": 13,
-        "image": "/assets/wrestlers/13.jpeg"
+        "image": "/assets/wrestlers/13.jpg"
     }
 ]

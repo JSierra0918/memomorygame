@@ -4,6 +4,8 @@ import Main from './Main';
 import Grid from './Grid';
 import ImageArray from '../Images.json';
 
+  //Global Variable
+  let newImageArray = [];
 
 class GameContainer extends React.Component {
     state = {
@@ -11,7 +13,7 @@ class GameContainer extends React.Component {
         topScore: 0,
         clicked: false
     }
-
+  
 
      addScore = () => {
         let currentTopScore = this.state.topScore;
@@ -24,13 +26,26 @@ class GameContainer extends React.Component {
 
         this.setState({
             score:  newScore,
-            topScore: currentTopScore
+            topScore: currentTopScore,
+            clicked: this.state.clicked = true
         })
     }
 
     //create a random Grid element
     renderElements = () => {
-        return <Grid image={process.env.PUBLIC_URL + "/assets/ace.jpeg"} wasClicked={this.addScore}/> 
+         newImageArray = [...ImageArray];
+
+        for (let i = 0; i < ImageArray.length; i++) {
+            let randomNum = Math.floor(Math.random()*ImageArray.length);
+
+            const element =ImageArray[randomNum];
+            let url =process.env.PUBLIC_URL + element.image;
+
+            //This for loop is only running once.
+            console.log(url);
+        return  <Grid image={url} wasClicked={this.addScore} key={element.id}/> 
+        }
+        // return <Grid image={process.env.PUBLIC_URL + "/assets/ace.jpeg"} wasClicked={this.addScore}/> 
     }
 
     render(){
