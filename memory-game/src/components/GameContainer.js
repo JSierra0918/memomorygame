@@ -13,29 +13,30 @@ class GameContainer extends React.Component {
     state = {
         score: 0,
         topScore: 0,
-        clicked: false
+        clicked: []
     }
   
 
-     addScore = (event) => {
+     addScore = (imgID) => {
         let currentTopScore = this.state.topScore;
         let newScore = this.state.score;
+        let clickedImage = this.state.clicked;
+        //increment score
         newScore++;
-
+        //check if it's highest score
         if (newScore >= currentTopScore) {
             currentTopScore = newScore;
         }
         //check if you you've already clicked on it.
-        if (this.state.clicked === true) {
-            console.log("You've already clicked on it!!!");
+        if (clickedImage.includes(imgID)) {
+            alert("You've already clicked on " + imgID);
+        }else {
+            clickedImage.push(imgID);
         }
-
-        console.log(event.target);
  
         this.setState({
             score:  newScore,
-            topScore: currentTopScore,
-            clicked: true
+            topScore: currentTopScore
         })
     }
 
@@ -59,7 +60,7 @@ class GameContainer extends React.Component {
         const domArray = array.map((item) => {
             let url =process.env.PUBLIC_URL + item.image;
         
-            return  <Grid image={url} wasClicked={this.addScore} key={item.id} dataClick={this.state.clicked} dataId={item.id}/>
+            return  <Grid image={url} onClick={this.addScore} key={item.id} dataClick={this.state.clicked} dataId={item.id}/>
         });    
         return domArray;
     }
@@ -69,7 +70,8 @@ class GameContainer extends React.Component {
         newImageArray  = [...ImageArray];
 
         this.setState({
-            score: 0
+            score: 0,
+            clicked: []
         })
     }
 
@@ -80,7 +82,7 @@ class GameContainer extends React.Component {
                 <Main>
                     <LeftSide/>
                     <div className = "grid-container"> 
-                        <Grid image={process.env.PUBLIC_URL + "/assets/ace.jpeg"} wasClicked={this.addScore}/> 
+                        {/* <Grid image={process.env.PUBLIC_URL + "/assets/ace.jpeg"} wasClicked={this.addScore}/>  */}
                         {this.shuffle(newImageArray)}
                     </div>
                 </Main>
