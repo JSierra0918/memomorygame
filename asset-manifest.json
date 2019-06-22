@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/memorygame/static/css/main.b4f776f1.chunk.css",
-    "main.js": "/memorygame/static/js/main.a3679469.chunk.js",
-    "main.js.map": "/memorygame/static/js/main.a3679469.chunk.js.map",
+    "main.css": "/memorygame/static/css/main.19e5b724.chunk.css",
+    "main.js": "/memorygame/static/js/main.e35fccc5.chunk.js",
+    "main.js.map": "/memorygame/static/js/main.e35fccc5.chunk.js.map",
     "runtime~main.js": "/memorygame/static/js/runtime~main.d170bb03.js",
     "runtime~main.js.map": "/memorygame/static/js/runtime~main.d170bb03.js.map",
     "static/js/2.b6950a07.chunk.js": "/memorygame/static/js/2.b6950a07.chunk.js",
     "static/js/2.b6950a07.chunk.js.map": "/memorygame/static/js/2.b6950a07.chunk.js.map",
     "index.html": "/memorygame/index.html",
-    "precache-manifest.fcd4a939fc9f6fce68faf008f6871067.js": "/memorygame/precache-manifest.fcd4a939fc9f6fce68faf008f6871067.js",
+    "precache-manifest.23820a85127ab077090c58a88a3a6c91.js": "/memorygame/precache-manifest.23820a85127ab077090c58a88a3a6c91.js",
     "service-worker.js": "/memorygame/service-worker.js",
-    "static/css/main.b4f776f1.chunk.css.map": "/memorygame/static/css/main.b4f776f1.chunk.css.map",
+    "static/css/main.19e5b724.chunk.css.map": "/memorygame/static/css/main.19e5b724.chunk.css.map",
     "static/media/logo.svg": "/memorygame/static/media/logo.5d5d9eef.svg"
   }
 }
