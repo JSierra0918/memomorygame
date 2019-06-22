@@ -43,5 +43,50 @@
     {
         "id": 13,
         "image": "/assets/wrestlers/13.jpg"
+    },
+    {
+        "id": 14,
+        "image": "/assets/wrestlers/14.jpg"
+    },
+    {
+        "id": 15,
+        "image": "/assets/wrestlers/15.jpg"
+    },
+    {
+        "id": 16,
+        "image": "/assets/wrestlers/16.jpg"
+    },
+    {
+        "id": 17,
+        "image": "/assets/wrestlers/17.jpg"
+    },
+    {
+        "id": 18,
+        "image": "/assets/wrestlers/18.jpg"
+    },
+    {
+        "id": 19,
+        "image": "/assets/wrestlers/19.jpg"
+    },
+    {
+        "id": 20,
+        "image": "/assets/wrestlers/20.jpg"
+    },
+    {
+        "id": 21,
+        "image": "/assets/wrestlers/21.jpg"
+    },
+    {
+        "id": 22,
+        "image": "/assets/wrestlers/22.jpg"
+    },
+    {
+        "id": 23,
+        "image": "/assets/wrestlers/23.jpg"
+    },
+    {
+        "id": 24,
+        "image": "/assets/wrestlers/24.jpg"
     }
+
 ]

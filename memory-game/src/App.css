@@ -1,10 +1,14 @@
+body {
+  font-family: 'Libre Baskerville', serif;
+  }
+
 .App {
   text-align: center;
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  height: 10vmin;
   pointer-events: none;
 }
 
@@ -50,13 +54,13 @@
   flex-wrap: wrap;
   padding: 20px;
   align-items: center;
-  align-self: center;
 }
 
 .left-side {
   margin: 0px;
   background: #FFCC00;
   padding: 20px;
+  width: 13em;
 }
 
 .img-wrapper {
@@ -82,6 +86,10 @@
 img:hover {
   cursor: pointer;
   scale: 1.2;
+}
+
+span.topScore {
+  color: rgb(196, 15, 99);
 }
 /* ========================================================================== */
 

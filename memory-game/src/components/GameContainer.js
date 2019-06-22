@@ -31,9 +31,11 @@ class GameContainer extends React.Component {
         if (clickedImage.includes(imgID)) {
             alert("You've already clicked on " + imgID);
             this.reset(newScore);
+        }else if (this.state.clicked.length===24){
+            alert("Nice you matched all of them!")
+            this.reset(newScore);
         }else {
             clickedImage.push(imgID);
-
             this.setState({
                 score:  newScore,
                 topScore: currentTopScore
