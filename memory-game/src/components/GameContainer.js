@@ -30,14 +30,15 @@ class GameContainer extends React.Component {
         //check if you you've already clicked on it.
         if (clickedImage.includes(imgID)) {
             alert("You've already clicked on " + imgID);
+            this.reset(newScore);
         }else {
             clickedImage.push(imgID);
+
+            this.setState({
+                score:  newScore,
+                topScore: currentTopScore
+            })
         }
- 
-        this.setState({
-            score:  newScore,
-            topScore: currentTopScore
-        })
     }
 
      shuffle = (array) => {
@@ -65,10 +66,11 @@ class GameContainer extends React.Component {
         return domArray;
     }
 
-    reset = () => {
+    reset = (newScore) => {
         // reset the array
+        console.log("reset!")
         newImageArray  = [...ImageArray];
-
+        
         this.setState({
             score: 0,
             clicked: []
