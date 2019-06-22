@@ -2,6 +2,8 @@ import React from 'react';
 import Header from './Header';
 import Main from './Main';
 import Grid from './Grid';
+import LeftSide from './LeftSide';
+
 import ImageArray from '../Images.json';
 
   //Global Variable
@@ -76,7 +78,7 @@ class GameContainer extends React.Component {
             <div>
                 <Header score={this.state.score} topScore={this.state.topScore} />
                 <Main>
-                    <h3>HELLO There!</h3>
+                    <LeftSide/>
                     <div className = "grid-container"> 
                         <Grid image={process.env.PUBLIC_URL + "/assets/ace.jpeg"} wasClicked={this.addScore}/> 
                         {this.shuffle(newImageArray)}
