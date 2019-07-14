@@ -1,5 +1,5 @@
 # React Memory Game
-In this memory game the goal is to no click the same item twice.  See if you can test your WWE/F knowledge!
+In this memory game the goal is to not click the same item twice.  See if you can test your WWE/F knowledge!
 
 # Techonologies
   * React
